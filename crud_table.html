@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crud Table</title>
+</head>
+<style>
+    body {
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+
+    input {
+        margin: 15px;
+        height: 30px;
+        width: 200px;
+        padding-left: 10px;
+        border: none;
+        background-color: rgb(241, 241, 241);
+        border-radius: 10px;
+        font-weight: bold;
+    }
+
+    table {
+        border: 1px solid black;
+        height: 100px;
+        width: 100%;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+
+    td,
+    th,
+    tr {
+        border: 1px solid black;
+        padding: 10px;
+        text-align: center;
+    }
+
+    thead {
+        background-color: rgb(70, 82, 59);
+        color: white;
+    }
+
+    button {
+        margin: 10px;
+        height: 40px;
+        width: 70px;
+        border: none;
+        color: white;
+        background-color: rgb(70, 82, 59);
+        border-radius: 10px;
+    }
+</style>
+
+<body>
+    <form onsubmit="event.preventDefault()">
+        Full Name :
+        <input type="text" placeholder="Your full name" id="userName">
+        Age :
+        <input type="number" placeholder="Your age" id="userAge">
+        Designation :
+        <input type="text" placeholder="Your designation" id="userDesignation">
+        <button type="submit" id="add_Data">Add Data</button>
+    </form>
+    <table id="crud_table">
+        <thead>
+            <th>Full Name</th>
+            <th>Age</th>
+            <th>Designation</th>
+            <th>Action</th>
+        </thead>
+        <tbody>
+            <!-- <tr>
+                <td>Komal Sawant</td>
+                <td>22</td>
+                <td>Web designer</td>
+                <td><button>Edit</button><button>Delete</button></td>
+            </tr> -->
+        </tbody>
+    </table>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        let crud_table = document.getElementById('crud_table');
+        let userName = document.getElementById('userName')
+        let userAge = document.getElementById('userAge')
+        let userDesignation = document.getElementById('userDesignation')
+        let add_Data = document.getElementById('add_Data')
+        add_Data.addEventListener('click', function () {
+            let name = userName.value;
+            let age = userAge.value;
+            let designation = userDesignation.value;
+
+            tablePattern = `
+            <tr id="tabelRow">
+                <td>${name}</td>
+                <td>${age}</td>
+                <td>${designation}</td>
+                <td><button class="editData">Edit</button><button class="deletData">Delete</button></td>
+            </tr>
+            `
+            crud_table.innerHTML += tablePattern;
+
+
+            $('#userName').val('');
+            $('#userAge').val('');
+            $('#userDesignation').val('');
+        })
+
+        // $('#deletData').click(function(){
+        //     $(this).closest('tr')
+        // })
+
+
+        $(document).on('click', 'button.deletData', function () {
+            $(this).closest('tr').remove();
+            return false;
+        });
+        $(document).on('click', 'button.editData', function () {
+           let show = $(this).closest('tr');
+           alert($(show).text())
+            console.log($(show).text())
+            return false;
+        });
+
+
+        // function deleteMe(tr) {
+        //     let tabelRow = document.getElementById('tabelRow');
+        //     let crud_table = document.getElementById('crud_table');
+        //     tabelRow.remove(crud_table);
+        // }
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>
