@@ -118,11 +118,15 @@
             return false;
         });
         $(document).on('click', 'button.editData', function () {
-           let show = $(this).closest('tr');
-           alert($(show).text())
+            let show = $(this).closest('tr');
+            alert($(show).text())
             console.log($(show).text())
             return false;
+            $('#userName').val('.tabelRow');
+            $('#userAge').val('.tabelRow');
+            $('#userDesignation').val('.');
         });
+        "Crud to check git"
 
 
         // function deleteMe(tr) {
