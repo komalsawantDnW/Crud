@@ -94,9 +94,9 @@
 
             tablePattern = `
             <tr id="tabelRow">
-                <td>${name}</td>
-                <td>${age}</td>
-                <td>${designation}</td>
+                <td class = "name_user">${name}</td>
+                <td class = "age_user">${age}</td>
+                <td class = "designation_user">${designation}</td>
                 <td><button class="editData">Edit</button><button class="deletData">Delete</button></td>
             </tr>
             `
@@ -108,41 +108,30 @@
             $('#userDesignation').val('');
         })
 
-        // $('#deletData').click(function(){
-        //     $(this).closest('tr')
-        // })
-
-
         $(document).on('click', 'button.deletData', function () {
             $(this).closest('tr').remove();
             return false;
         });
-        $(document).on('click', 'button.editData', function () {
-            let show = $(this).closest('tr');
-            alert($(show).text())
-            console.log($(show).text())
-            return false;
-            $('#userName').val('.tabelRow');
-            $('#userAge').val('.tabelRow');
-            $('#userDesignation').val('.');
-        });
-        "Crud to check git"
 
-
-        // function deleteMe(tr) {
-        //     let tabelRow = document.getElementById('tabelRow');
-        //     let crud_table = document.getElementById('crud_table');
-        //     tabelRow.remove(crud_table);
-        // }
-
-
-
-
-
-
-
-
-
+        $(document).on('click', 'button.editData',function(){
+            let currentRow = $(this).closest('tr');
+            let row_1 = $(currentRow).find('.name_user')
+            let row_2 = $(currentRow).find('.age_user')
+            let row_3 = $(currentRow).find('.designation_user')
+            console.log((row_1).text())
+            console.log((row_2).text())
+            console.log((row_3).text())
+            $('#userName').val((row_1).text())
+            $('#userAge').val((row_2).text())
+            $('#userDesignation').val((row_3).text())
+            document.getElementById('add_Data').innerHTML = "Save"
+            $('#add_Data').click(function(){
+                // currentRow.replaceWith($('#userName').val((row_1).text()))
+                console.log($('#userName').val((row_1).text()))
+                console.log($('#userAge').val((row_2).text()))
+                console.log($('#userDesignation').val((row_3).text()))
+            })
+        })
     </script>
 </body>
 
